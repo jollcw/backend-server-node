@@ -91,3 +91,79 @@ Agregar archivos para subir al repositorio
 
     backend-server> git add .
 
+mirar el stado del repositorio
+
+    backend-server> git status
+
+nos indica en color verde los archivos agregados listos para subir
+
+Subir archivos al "PRErepositorio" con un mensaje
+
+    backend-server> git commit -m "Primer commit del proyecto"
+
+Indicar a que repositorio de github se subiran los archivos
+
+    backend-server> git remote add origin https://github.com/jollcw/backend-server-node.git
+
+Subir archivos al repositorio
+
+    backend-server> git push -u origin master
+
+fatal: HttpRequestException encountered.
+   Error al enviar la solicitud.
+
+Username for 'https://github.com': jollcw
+
+Password for 'https://jollcw@github.com':
+
+Counting objects: 6, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (6/6), 2.16 KiB | 220.00 KiB/s, done.
+Total 6 (delta 0), reused 0 (delta 0)
+
+
+### Crear un Release Tag
+primero ver los tags que hay
+
+    backend-server> git tag
+no muestra nada, por lo tanto no hay tags
+
+Crear un Release Tag
+
+    backend-server> git tag -a V0.0.1 -m "Fin de la secciión 9 del tuto"
+
+primero ver los tags creados
+
+    backend-server> git tag
+
+Subir el tag a github
+
+    backend-server> git push --tag
+
+### Crear un Release
+Desde la web de git, en el tag crear la release
+
+---
+
+## Install body-parser
+
+Toma la información del post y crea un objeto javascript que podemos utilizar
+
+    backend-server> npm install body-parser --save
+
+---
+
+## Install mongoose-unique-validator
+
+Es un plugin de moongose que hayuda a validar claves unicas
+
+    backend-server> npm install mongoose-unique-validator --save
+
+---
+
+## Install bcrypt.js
+
+Lib to help you hash passwords
+
+    backend-server> npm install bcryptjs --save
