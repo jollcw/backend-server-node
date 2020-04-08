@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 // Importar la configuración del SEED
 const SEED = require('../config/config').SEED;
 // Importar el Modelo
-const Usuario = require('../models/usuarioMdl');
+const Usuario = require('../models/usuarioModel');
 
 const loginC = {
   /**

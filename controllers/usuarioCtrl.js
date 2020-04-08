@@ -1,4 +1,4 @@
-const Usuario = require('../models/usuarioMdl');
+const Usuario = require('../models/usuarioModel');
 const mongoose = require('mongoose');
 // var ObjectID = require('mongo').ObjectID;
 // para encriptar la contraseña

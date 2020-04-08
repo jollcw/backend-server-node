@@ -4,14 +4,14 @@ const mongoUrl = require('./config/dbMongoConfig');
 const serverConfig = require('./config/serverConfig');
 
 // Importación de librerias, propias o de terceros, que se utilizan en el proyecto
-var express = require('express');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser')
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser')
 
 
 // Inicializar variables
 // Aqui voy a usar la libreria e inicializar mi app
-var app = express();
+const app = express();
 
 // body-parser Configuracion
 // parse application/x-www-form-urlencoded
@@ -21,9 +21,11 @@ app.use(bodyParser.json())
 
 
 // importar rutas
-var appRoutes = require('./routes/appRoutes');
-var usuarioRoutes = require('./routes/usuarioRoutes');
-var loginRoutes = require('./routes/loginRoutes');
+const appRoutes = require('./routes/appRoutes');
+const usuarioRoutes = require('./routes/usuarioRoutes');
+const loginRoutes = require('./routes/loginRoutes');
+const hopitalRoutes = require('./routes/hospitalRoutes');
+const medicoRoutes = require('./routes/medicoRoutes');
 
 // Realizar la conexion a la bd
 // mongoose.connection.openUri('mongodb://localhost:27017/hospitalDB', (err, res) => {
@@ -45,6 +47,8 @@ mongoose.connect(
 app.use('/', appRoutes);
 app.use('/usuario', usuarioRoutes);
 app.use('/login', loginRoutes);
+app.use('/hospital', hopitalRoutes);
+app.use('/medico', medicoRoutes);
 
 // Escuchar peticiones
 // app.listen(3000, () => {
