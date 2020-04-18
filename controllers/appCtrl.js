@@ -1,7 +1,5 @@
 // Importar el Modelo
 
-// Importar Mongoose
-
 const appC = {
   appDefault: (req, res, next) => {
     res.status(200).json({

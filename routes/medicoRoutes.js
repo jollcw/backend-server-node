@@ -9,8 +9,9 @@ const app = express();
 
 // Rutas
 app.get('/', medicoC.medicoGet);
-app.post('/', autenticationM.verificaToken, medicoC.medicoInsert);
+app.get('/details', medicoC.medicoGetDetails);
 app.put('/:id', autenticationM.verificaToken, medicoC.medicoEdit);
+app.post('/', autenticationM.verificaToken, medicoC.medicoInsert);
 app.delete('/:id', autenticationM.verificaToken, medicoC.medicoDelete);
 
 module.exports = app;

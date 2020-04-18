@@ -23,6 +23,40 @@ const usuarioC = {
 
         });
   },
+  userGetPaged: (req, res, next) => {
+    let desde = req.query.desde || 0;
+    desde = Number(desde);
+
+    Usuario.find({}, 'nombre email img role')
+    .skip(desde)
+    .limit(5)
+    .exec((err, usuarios) => {
+      if (err) {
+        return res.status(500).json({
+          ok: false,
+          mensaje: 'Error al buscar usuarios',
+          errors: err
+        })
+      }
+
+      if (!usuarios) {
+        return res.status(401).json({
+          ok: false,
+          mensaje: 'No se han encontrado usuarios'
+        })
+      }
+
+      Usuario.countDocuments({}, (err, conteo) => {
+        res.status(200).json({
+          ok: true,
+          usuarios: usuarios,
+          total: conteo
+        })
+
+      })
+    })
+  },
+
   userInsert: async (req, res, next) => {
     // recoger los parametos del objeto: request.body, creado por: body-parser
     let body = req.body;

@@ -16,6 +16,8 @@ const app = express();
 // ======================================
 // Obtener todos los usuarios
 app.get('/', usuarioC.userFindAll);
+// Obtener todos los usuarios paginados
+app.get('/paged', usuarioC.userGetPaged);
 // ======================================
 // Crear usuarios
 app.post('/', autenticacionM.verificaToken, usuarioC.userInsert);

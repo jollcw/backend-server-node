@@ -6,7 +6,10 @@ const serverConfig = require('./config/serverConfig');
 // Importación de librerias, propias o de terceros, que se utilizan en el proyecto
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+
+// Error class
+const { handleError, ErrorHandler } = require('./helpers/error');
 
 
 // Inicializar variables
@@ -15,9 +18,9 @@ const app = express();
 
 // body-parser Configuracion
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 
 // importar rutas
@@ -26,6 +29,14 @@ const usuarioRoutes = require('./routes/usuarioRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 const hopitalRoutes = require('./routes/hospitalRoutes');
 const medicoRoutes = require('./routes/medicoRoutes');
+const busquedaRoutes = require('./routes/busquedasRoutes');
+const uploadRoutes = require('./routes/uploadRoutes');
+const imgRoutes = require('./routes/imagenesRoutes');
+
+// Middleware de manejo de errors
+app.use((err, req, res, next) => {
+  handleError(err, res);
+});
 
 // Realizar la conexion a la bd
 // mongoose.connection.openUri('mongodb://localhost:27017/hospitalDB', (err, res) => {
@@ -44,11 +55,14 @@ mongoose.connect(
 
 
 // Rutas: cuando viene una petición que coincide con la ruta '?', utilizar el archivo de Routes indicado
-app.use('/', appRoutes);
 app.use('/usuario', usuarioRoutes);
 app.use('/login', loginRoutes);
 app.use('/hospital', hopitalRoutes);
 app.use('/medico', medicoRoutes);
+app.use('/busqueda', busquedaRoutes);
+app.use('/upload', uploadRoutes);
+app.use('/imagen', imgRoutes);
+app.use('/', appRoutes);
 
 // Escuchar peticiones
 // app.listen(3000, () => {

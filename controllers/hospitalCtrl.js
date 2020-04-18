@@ -25,6 +25,32 @@ const hospitalC = {
       })
     })
   },
+  hospitalGetDetails: (req, res, next) => {
+    let b = req.body;
+    console.log('details hospital');
+    Hospital.find({})
+    .populate('usuario', 'nombre email')
+    .exec((err, hospitalDb) => {
+      if (err) {
+        return res.status(500).json({
+          ok: false,
+          mensaje: 'Error al buscar hospitales',
+          errors: err
+        })
+      }
+
+      if (!hospitalDb) {
+        return res.status(400).json({
+          ok: false
+        })
+      }
+
+      res.status(200).json({
+        ok: true,
+        hospital: hospitalDb
+      })
+    })
+  },
   hospitalInsert: (req, res, next) => {
     let b = req.body;
 

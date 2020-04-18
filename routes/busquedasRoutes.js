@@ -12,6 +12,10 @@ const app = express();
 
 // Rutas
 app.get('/', busquedaC.busquedaDefault);
+// Buscar en todas las colecciones
+app.get('/todo/:busqueda', busquedaC.busquedaTodo);
+// Buscar en una colección
+app.get('/coleccion/:tabla/:busqueda', busquedaC.busquedaColeccion);
 
 // exportar el modulo para poder utilizarlo en otras partes
 module.exports = app;
